@@ -58,7 +58,7 @@ defmodule Mix.Tasks.Validation.Gen do
     ["lib", "mix", "tasks", "validation_cases.json"]
     |> Path.join()
     |> File.read!()
-    |> Poison.decode!()
+    |> Jason.decode!()
     |> Map.get("cases")
     |> Enum.filter(& &1["b"])
   end

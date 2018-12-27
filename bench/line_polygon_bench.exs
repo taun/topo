@@ -4,17 +4,17 @@ defmodule LinePolygonBench do
 
   @states Path.join([ "bench", "shapes", "states.json" ])
     |> File.read!
-    |> Poison.decode!
+    |> Jason.decode!
     |> Map.fetch!("features")
     |> Enum.map(&(&1["geometry"]))
-    |> Enum.map(&Geo.JSON.decode/1)
+    |> Enum.map(&Geo.JSON.decode!/1)
 
   @interstates Path.join([ "bench", "shapes", "interstates.json" ])
     |> File.read!
-    |> Poison.decode!
+    |> Jason.decode!
     |> Map.fetch!("features")
     |> Enum.map(&(&1["geometry"]))
-    |> Enum.map(&Geo.JSON.decode/1)
+    |> Enum.map(&Geo.JSON.decode!/1)
 
   bench "Interstates in States" do
     [state] = Enum.take_random(@states, 1)

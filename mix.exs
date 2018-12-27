@@ -11,7 +11,7 @@ defmodule Topo.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
-      dialyzer: [plt_add_apps: [:poison, :mix]],
+      dialyzer: [plt_add_apps: [:jason, :mix]],
       deps: deps()
     ]
   end
@@ -22,13 +22,15 @@ defmodule Topo.Mixfile do
 
   defp deps do
     [
-      {:geo, "~> 2.1"},
+      {:geo, git: "https://github.com/taun/geo.git", branch: "jason_compatibility"},
+      # {:geo, "~> 2.1"},
       {:seg_seg, "~> 0.1"},
       {:vector, "~> 1.0"},
-      {:poison, "~> 3.0", only: [:test, :dev]},
+      {:jason, "~> 1.1", only: [:test, :dev]},
       {:benchfella, "~> 0.3.0", only: :dev},
       {:excoveralls, "~> 0.8", only: :test},
-      {:envelope, "~> 1.0", only: :dev},
+      {:envelope, git: "https://github.com/taun/topo.git", branch: "jason_compatibility"},
+      # {:envelope, "~> 1.0", only: :dev},
       {:earmark, "~> 1.2", only: :dev},
       {:ex_doc, "~> 0.18", only: :dev},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}

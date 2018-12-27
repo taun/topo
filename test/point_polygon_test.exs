@@ -4,8 +4,8 @@ defmodule PointPolygonTest do
   @convex %Geo.Polygon{coordinates: [[{60, 120}, {60, 40}, {160, 40}, {160, 120}, {60, 120}]]}
   @concave Path.join(["test", "fixtures", "poly.geo.json"])
            |> File.read!()
-           |> Poison.decode!()
-           |> Geo.JSON.decode()
+           |> Jason.decode!()
+           |> Geo.JSON.decode!()
   @with_hole %Geo.Polygon{
     coordinates: [
       [{60, 120}, {60, 40}, {160, 40}, {160, 120}, {60, 120}],

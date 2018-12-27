@@ -7,8 +7,8 @@ defmodule PointPolygonBench do
   @multipoint %Geo.MultiPoint{coordinates: (for x <- @values, y <- @values, do: {x, y})}
   @polygon Path.join([ "test", "fixtures", "poly.geo.json" ])
     |> File.read!
-    |> Poison.decode!
-    |> Geo.JSON.decode
+    |> Jason.decode!
+    |> Geo.JSON.decode!
 
   bench "Point / Polygon intersects" do
     Enum.each @points, fn point ->
@@ -53,17 +53,17 @@ defmodule PointPolygonBench do
 
   @states Path.join([ "bench", "shapes", "states.json" ])
     |> File.read!
-    |> Poison.decode!
+    |> Jason.decode!
     |> Map.fetch!("features")
     |> Enum.map(&(&1["geometry"]))
-    |> Enum.map(&Geo.JSON.decode/1)
+    |> Enum.map(&Geo.JSON.decode!/1)
 
   @cities Path.join([ "bench", "shapes", "cities.json" ])
     |> File.read!
-    |> Poison.decode!
+    |> Jason.decode!
     |> Map.fetch!("features")
     |> Enum.map(&(&1["geometry"]))
-    |> Enum.map(&Geo.JSON.decode/1)
+    |> Enum.map(&Geo.JSON.decode!/1)
 
   bench "Cities in States" do
     [state] = Enum.take_random(@states, 1)
