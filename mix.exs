@@ -29,7 +29,7 @@ defmodule Topo.Mixfile do
       {:jason, "~> 1.1", only: [:test, :dev]},
       {:benchfella, "~> 0.3.0", only: :dev},
       {:excoveralls, "~> 0.8", only: :test},
-      {:envelope, git: "https://github.com/taun/topo.git", branch: "jason_compatibility"},
+      {:envelope, git: "https://github.com/taun/envelope_ex.git", branch: "jason_compatibility"},
       # {:envelope, "~> 1.0", only: :dev},
       {:earmark, "~> 1.2", only: :dev},
       {:ex_doc, "~> 0.18", only: :dev},
